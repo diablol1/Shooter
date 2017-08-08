@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 		float rotX = Input.GetAxis ("Mouse X") * mouseSensitivity;
 		float rotY = Input.GetAxis ("Mouse Y") * mouseSensitivity;
 
-		head.transform.Rotate (-rotY, 0, 0);	
+		head.transform.Rotate (-rotY, 0, 0);
 
 		transform.Rotate (0, rotX, 0);
 
