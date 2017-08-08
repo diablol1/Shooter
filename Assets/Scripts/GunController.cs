@@ -3,24 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GunController : MonoBehaviour {
-
-	public Transform bulletSpawn;
-	public GameObject bulletPrefab;
-
-	public float bulletForwardForce;
-	public float bulletExistenceTime;
-
+public class GunController : Shootable {
+	
 	int ammo;
 	public Text ammoText;
 
 	void Update () {
 		//Left button
 		if (Input.GetMouseButtonDown(0) && ammo > 0) {
-			GameObject bullet = Instantiate (bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
-			bullet.GetComponent<Rigidbody> ().AddForce (bulletSpawn.forward * bulletForwardForce);
-
-			Destroy (bullet, bulletExistenceTime);
+			Shoot ();
 
 			ammo--;
 			UpdateAmmoText ();

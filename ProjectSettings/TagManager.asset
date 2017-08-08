@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LyingGun
   - AmmoPack
+  - Bullet
   layers:
   - Default
   - TransparentFX
