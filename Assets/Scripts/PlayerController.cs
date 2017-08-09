@@ -31,6 +31,6 @@ public class PlayerController : MonoBehaviour {
 		Vector3 move = new Vector3 (horizontalMove, 0, verticalMove);
 		move = transform.rotation * move;
 
-		player.Move (move * Time.deltaTime);
+		player.SimpleMove (move);
 	}
 }
