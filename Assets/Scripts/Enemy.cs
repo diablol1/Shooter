@@ -8,6 +8,8 @@ public class Enemy : Shootable {
 
 	public int health;
 
+	public float alarmRadius;
+
 	public float distanceToStartAttacking;
 
 	public float closestDistanceToPlayer;
@@ -22,10 +24,10 @@ public class Enemy : Shootable {
 
 	float timeSinceLastShot;
 
-	bool attacked;
+	bool attacking;
 
 	void Update () {
-		if(Vector3.Distance(player.position, transform.position) <= distanceToStartAttacking || attacked) {
+		if(Vector3.Distance(player.position, transform.position) <= distanceToStartAttacking || attacking) {
 			Vector3 direction = player.position - transform.position;
 
 			RotateTowardPlayer (direction);
@@ -66,7 +68,19 @@ public class Enemy : Shootable {
 				Destroy (gameObject);
 			}
 
-			attacked = true;
+			attacking = true;
+
+			AlarmCloseEnemies ();
+		}
+	}
+
+	void AlarmCloseEnemies() {
+		Collider[] colliders = Physics.OverlapSphere(transform.position, alarmRadius);
+
+		foreach (Collider c in colliders) {
+			if (c.tag == "Enemy") {
+				c.gameObject.GetComponent<Enemy> ().attacking = true;
+			}
 		}
 	}
 }

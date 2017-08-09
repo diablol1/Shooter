@@ -7,6 +7,7 @@ TagManager:
   - LyingGun
   - AmmoPack
   - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX

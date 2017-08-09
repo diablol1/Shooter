@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 114823278309685980}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -213,6 +213,7 @@ MonoBehaviour:
   ammoPackPrefab: {fileID: 1711187843043742, guid: 33cec97443a5e73418f00e2df3063aa4,
     type: 2}
   health: 4
+  alarmRadius: 15
   distanceToStartAttacking: 30
   closestDistanceToPlayer: 5
   rotationSpeed: 500
