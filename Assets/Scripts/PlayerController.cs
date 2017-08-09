@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 
 public class PlayerController : MonoBehaviour {
+
+	public int health;
+	public Text healthText;	
 
 	public float walkSpeed;
 	public float mouseSensitivity;
@@ -14,6 +19,7 @@ public class PlayerController : MonoBehaviour {
 	CharacterController player;
 
 	void Start () {
+		UpdateHealthText ();
 		player = GetComponent<CharacterController> ();
 	}
 
@@ -32,5 +38,21 @@ public class PlayerController : MonoBehaviour {
 		move = transform.rotation * move;
 
 		player.SimpleMove (move);
+	}
+
+	void OnTriggerEnter(Collider collider) {
+		if (collider.tag == "Bullet") {
+			Destroy (collider.gameObject);
+			health--;
+
+			if (health == 0)
+				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+			UpdateHealthText ();
+		}
+	}
+
+	void UpdateHealthText() {
+		healthText.text = "Health: " + health.ToString ();
 	}
 }
