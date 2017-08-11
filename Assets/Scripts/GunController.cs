@@ -4,25 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GunController : Shootable {
-	
-	int ammo;
+
+	public Counter ammoCounter;
 	public Text ammoText;
+
+	void Awake() {
+		ammoCounter = new Counter (ammoText, "Ammo: ", 0);
+		gameObject.SetActive (false);
+	}
 
 	void Update () {
 		//Left button
-		if (Input.GetMouseButtonDown(0) && ammo > 0) {
+		if (Input.GetMouseButtonDown(0) && ammoCounter.GetValue() > 0) {
 			Shoot ();
 
-			ammo--;
-			UpdateAmmoText ();
+			ammoCounter.Subtract (1);
 		}
-	}
-
-	public void AddAmmo(int n) {
-		ammo += n;
-	}
-
-	public void UpdateAmmoText() {
-		ammoText.text = "Ammo: " + ammo.ToString ();
 	}
 }

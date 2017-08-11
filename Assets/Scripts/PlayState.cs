@@ -15,7 +15,7 @@ public class PlayState : MonoBehaviour {
 			pauseMenu.gameObject.SetActive (true);
 			gameObject.SetActive (false);
 			Time.timeScale = 0;
-		} else if (player.health <= 0 || leftTime.GetInSeconds() == 0) {
+		} else if (player.healthCounter.GetValue() <= 0 || leftTime.GetInSeconds() == 0) {
 			SceneManager.LoadScene ("Scenes/GameOver");
 		}
 	}

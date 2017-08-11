@@ -12,9 +12,8 @@ public class PickUpAmmoPack : MonoBehaviour {
 	void OnControllerColliderHit(ControllerColliderHit hit) {
 		if (hit.collider.tag == "AmmoPack") {
 			Destroy (hit.collider.gameObject);
-	
-			gun.GetComponent<GunController> ().AddAmmo (Random.Range (minAmmo, maxAmmo));
-			gun.GetComponent<GunController> ().UpdateAmmoText ();
+
+			gun.GetComponent<GunController> ().ammoCounter.Add (Random.Range (minAmmo, maxAmmo));
 		}
 	}
 }

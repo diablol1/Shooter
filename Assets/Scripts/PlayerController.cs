@@ -8,8 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
-	public int health;
-	public Text healthText;	
+	public Counter healthCounter;
+	public Text healthText;
+	public int healthOnStart;
 
 	public float walkSpeed;
 	public float mouseSensitivity;
@@ -18,8 +19,11 @@ public class PlayerController : MonoBehaviour {
 
 	CharacterController player;
 
+	void Awake() {
+		healthCounter = new Counter (healthText, "Health: ", healthOnStart);
+	}
+
 	void Start () {
-		UpdateHealthText ();
 		player = GetComponent<CharacterController> ();
 	}
 
@@ -43,13 +47,8 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter(Collider collider) {
 		if (collider.tag == "Bullet") {
 			Destroy (collider.gameObject);
-			health--;
 
-			UpdateHealthText ();
+			healthCounter.Subtract (1);
 		}
-	}
-
-	void UpdateHealthText() {
-		healthText.text = "Health: " + health.ToString ();
 	}
 }

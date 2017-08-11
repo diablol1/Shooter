@@ -8,6 +8,7 @@ TagManager:
   - AmmoPack
   - Bullet
   - Enemy
+  - HealthPack
   layers:
   - Default
   - TransparentFX
