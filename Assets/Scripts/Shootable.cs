@@ -7,8 +7,8 @@ public class Shootable : MonoBehaviour {
 	public Transform bulletSpawn;
 	public GameObject bulletPrefab;
 
-	public float bulletForwardForce;
-	public float bulletExistenceTime;
+	const float bulletForwardForce = 2500;
+	const float bulletExistenceTime = 4.0f;
 
 	public void Shoot() {
 		GameObject bullet = Instantiate (bulletPrefab, bulletSpawn.position, bulletSpawn.rotation, GameObject.Find("BulletsContainer").transform);

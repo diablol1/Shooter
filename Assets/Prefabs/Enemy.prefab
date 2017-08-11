@@ -208,19 +208,10 @@ MonoBehaviour:
   bulletSpawn: {fileID: 4403594395864864}
   bulletPrefab: {fileID: 1034482518035546, guid: b5cea7d76d0ba4e4b976dc0cfdbdd8b4,
     type: 2}
-  bulletsContainer: {fileID: 4430784077485344, guid: 39b3a400fca739d4b81141d7306be6e7,
-    type: 2}
-  bulletForwardForce: 2000
+  bulletForwardForce: 2500
   bulletExistenceTime: 4
   ammoPackPrefab: {fileID: 1711187843043742, guid: 33cec97443a5e73418f00e2df3063aa4,
     type: 2}
-  health: 4
-  alarmRadius: 15
-  distanceToStartAttacking: 30
-  closestDistanceToPlayer: 5
-  rotationSpeed: 500
-  walkSpeed: 10
-  shootingInterval: 0.3
   player: {fileID: 0}
 --- !u!136 &136208628264876020
 CapsuleCollider:
