@@ -45,9 +45,6 @@ public class PlayerController : MonoBehaviour {
 			Destroy (collider.gameObject);
 			health--;
 
-			if (health == 0)
-				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
 			UpdateHealthText ();
 		}
 	}

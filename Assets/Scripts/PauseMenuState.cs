@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuState : MonoBehaviour {
 
+	public PlayState play;
+
 	public void OnClickResume() {
-		GetComponent<SwitchState> ().Execute ();
+		Resume ();
 	}
 
 	public void OnClickReset() {
@@ -20,7 +22,13 @@ public class PauseMenuState : MonoBehaviour {
 
 	void Update() {
 		if (Input.GetKeyUp (KeyCode.Escape)) {
-			GetComponent<SwitchState> ().Execute ();
+			Resume ();
 		}
+	}
+
+	void Resume() {
+		play.gameObject.SetActive (true);
+		gameObject.SetActive (false);
+		Time.timeScale = 1;
 	}
 }
