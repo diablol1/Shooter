@@ -6,45 +6,67 @@ public class Enemy : Shootable {
 
 	public GameObject ammoPackPrefab;
 
-	public int health;
+	int health = 3;
 
-	public float alarmRadius;
+	const float rotationSpeed = 100.0f;
 
-	public float distanceToStartAttacking;
+	const float walkSpeed = 10.0f;
 
-	public float closestDistanceToPlayer;
+	const float alarmRadius = 25.0f;
 
-	public float rotationSpeed;
+	const float distanceToFollow = 40.0f;
 
-	public float walkSpeed;
+	const float distanceToAttack = 30.0f;
 
-	public float shootingInterval;
+	const float notSeenTimeToStopFollowing = 10.0f;
+
+	const float closestDistanceToPlayer = 5.0f;
+
+	const float shootingInterval = 0.25f;
 
 	public Transform player;
 
 	float timeSinceLastShot;
 
-	bool attacking;
+	float timeSinceNotSeenPlayer;
+
+	bool attacked;
 
 	void Update () {
-		if(Vector3.Distance(player.position, transform.position) <= distanceToStartAttacking || attacking) {
-			Vector3 direction = player.position - transform.position;
 
-			RotateTowardPlayer (direction);
+		timeSinceNotSeenPlayer += Time.deltaTime;
+		timeSinceLastShot += Time.deltaTime;
 
-			if(direction.magnitude >= closestDistanceToPlayer)
-				MoveTowardPlayer ();
+		float distance = Vector3.Distance (player.position, transform.position);
+		Vector3 direction = player.position - transform.position;
 
-			timeSinceLastShot += Time.deltaTime;
+		if (distance <= distanceToFollow) {
+			timeSinceNotSeenPlayer = 0;
+			Follow (direction);
+		} else if (attacked) {
+			Follow (direction);
+		}
+
+		if (distance <= distanceToAttack) {
 			if (timeSinceLastShot >= shootingInterval) {
-				timeSinceLastShot = 0f;
+				timeSinceLastShot = 0;
 				Shoot ();
 			}
 		}
+
+		if (timeSinceNotSeenPlayer >= notSeenTimeToStopFollowing) {
+			attacked = false;
+		}
 	}
 
-	void RotateTowardPlayer(Vector3 playerDirection) {
-		Vector3 direction = player.position - transform.position;
+	void Follow(Vector3 direction) {
+		RotateTowardPlayer (direction);
+
+		if(direction.magnitude >= closestDistanceToPlayer)
+			MoveTowardPlayer ();
+	}
+
+	void RotateTowardPlayer(Vector3 direction) {
 		direction.y = 0;
 		direction.x *= Random.Range (0.95f, 1.05f); //Rotate little bit to left/right
 
@@ -68,7 +90,8 @@ public class Enemy : Shootable {
 				Destroy (gameObject);
 			}
 
-			attacking = true;
+			timeSinceNotSeenPlayer = 0;
+			attacked = true;
 
 			AlarmCloseEnemies ();
 		}
@@ -79,7 +102,7 @@ public class Enemy : Shootable {
 
 		foreach (Collider c in colliders) {
 			if (c.tag == "Enemy") {
-				c.gameObject.GetComponent<Enemy> ().attacking = true;
+				c.gameObject.GetComponent<Enemy> ().attacked = true;
 			}
 		}
 	}
