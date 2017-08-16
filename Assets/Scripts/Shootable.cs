@@ -11,7 +11,10 @@ public class Shootable : MonoBehaviour {
 	const float bulletExistenceTime = 4.0f;
 
 	public void Shoot() {
-		GameObject bullet = Instantiate (bulletPrefab, bulletSpawn.position, bulletSpawn.rotation, GameObject.Find("BulletsContainer").transform);
+		GameObject bullet = Instantiate (bulletPrefab,
+			bulletSpawn.position,
+			bulletSpawn.rotation,
+			GameObject.FindGameObjectWithTag("BulletsContainer").transform);
 		bullet.GetComponent<Rigidbody> ().AddForce (bulletSpawn.forward * bulletForwardForce);
 
 		Destroy (bullet, bulletExistenceTime);

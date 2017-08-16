@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameOverState : MonoBehaviour {
 
 	public void OnClickPlayAgain() {
-		SceneManager.LoadScene ("Scenes/TestScene"); //TODO: Loading from save
+		SceneManager.LoadScene (ChangeLevel.GetCurrentLevelPath());
 	}
 
 	public void OnClickMainMenu() {

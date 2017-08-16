@@ -24,13 +24,17 @@ public class Enemy : Shootable {
 
 	const float shootingInterval = 0.25f;
 
-	public Transform player;
+	Transform player;
 
 	float timeSinceLastShot;
 
 	float timeSinceNotSeenPlayer;
 
 	bool attacked;
+
+	void Start() {
+		player = GameObject.FindGameObjectWithTag ("Player").transform;
+	}
 
 	void Update () {
 

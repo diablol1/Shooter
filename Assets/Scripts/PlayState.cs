@@ -10,6 +10,10 @@ public class PlayState : MonoBehaviour {
 
 	public PauseMenuState pauseMenu;
 
+	void Start() {
+		Time.timeScale = 1;
+	}
+
 	void Update () {
 		if (Input.GetKeyUp (KeyCode.Escape)) {
 			pauseMenu.gameObject.SetActive (true);

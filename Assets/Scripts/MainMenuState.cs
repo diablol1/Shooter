@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuState : MonoBehaviour {
+
+	public GamesManagingState savesManaging;
 	
 	public void OnClickPlay() {
-		Time.timeScale = 1;
-		SceneManager.LoadScene ("Scenes/TestScene"); //Loading saves will be here in future
+		savesManaging.gameObject.SetActive (true);
+		gameObject.SetActive (false);
 	}
 
 	public void OnClickExit() {
