@@ -23,4 +23,12 @@ public class PlayState : MonoBehaviour {
 			SceneManager.LoadScene ("Scenes/GameOver");
 		}
 	}
+
+	void OnEnable() {
+		Cursor.lockState = CursorLockMode.Locked;
+	}
+
+	void OnDisable() {
+		Cursor.lockState = CursorLockMode.None;
+	}
 }
