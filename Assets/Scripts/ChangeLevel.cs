@@ -21,9 +21,9 @@ public class ChangeLevel : MonoBehaviour {
 
 			if (CurrentLevelIndex <= numberOfLevels) {
 				GamesManagingState.UpdateSave ();
-				SceneManager.LoadScene (GetCurrentLevelPath());
-			}
-
+				SceneManager.LoadScene (GetCurrentLevelPath ());
+			} else
+				SceneManager.LoadScene ("Scenes/GameEnd");
 		}
 	}
 
