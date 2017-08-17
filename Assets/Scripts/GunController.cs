@@ -9,6 +9,8 @@ public class GunController : Shootable {
 	public Text ammoText;
 
 	void Awake() {
+		base.Awake ();
+
 		ammoCounter = new Counter (ammoText, "Ammo: ", 0);
 		gameObject.SetActive (false);
 	}

@@ -26,18 +26,22 @@ public class Enemy : Shootable {
 
 	Transform player;
 
+	GameObject instantiatedObjects;
+
 	float timeSinceLastShot;
 
 	float timeSinceNotSeenPlayer;
 
 	bool attacked;
 
-	void Start() {
+	void Awake() {
+		base.Awake ();
+
+		instantiatedObjects = GameObject.Find ("InstantiatedObjects");
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
 	}
 
 	void Update () {
-
 		timeSinceNotSeenPlayer += Time.deltaTime;
 		timeSinceLastShot += Time.deltaTime;
 
@@ -90,7 +94,7 @@ public class Enemy : Shootable {
 			health--;
 
 			if (health == 0) {
-				Instantiate (ammoPackPrefab, transform.position, Quaternion.identity);
+				Instantiate (ammoPackPrefab, transform.position, Quaternion.identity, instantiatedObjects.transform);
 				Destroy (gameObject);
 			}
 

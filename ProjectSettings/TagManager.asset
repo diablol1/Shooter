@@ -9,7 +9,6 @@ TagManager:
   - Bullet
   - Enemy
   - HealthPack
-  - BulletsContainer
   layers:
   - Default
   - TransparentFX
