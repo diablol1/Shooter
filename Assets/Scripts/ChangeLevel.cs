@@ -7,7 +7,7 @@ using System.IO;
 public class ChangeLevel : MonoBehaviour {
 
 	const string levelsDirectory = "Scenes/Levels/";
-	const int numberOfLevels = 2;
+	public const int NumberOfLevels = 2;
 
 	public static int CurrentLevelIndex = 1;
 
@@ -19,7 +19,7 @@ public class ChangeLevel : MonoBehaviour {
 			
 			CurrentLevelIndex++;
 
-			if (CurrentLevelIndex <= numberOfLevels) {
+			if (CurrentLevelIndex <= NumberOfLevels) {
 				GamesManagingState.UpdateSave ();
 				SceneManager.LoadScene (GetCurrentLevelPath ());
 			} else

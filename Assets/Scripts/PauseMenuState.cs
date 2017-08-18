@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenuState : MonoBehaviour {
 
 	public PlayState play;
+
+	public Text currentLevelText;
 
 	public void OnClickResume() {
 		Resume ();
@@ -18,6 +21,10 @@ public class PauseMenuState : MonoBehaviour {
 
 	public void OnClickMainMenu() {
 		SceneManager.LoadScene ("Scenes/MainMenu");
+	}
+
+	void OnEnable() {
+		currentLevelText.text = "Level: " + ChangeLevel.CurrentLevelIndex.ToString() + "/" + ChangeLevel.NumberOfLevels.ToString();
 	}
 
 	void Update() {
