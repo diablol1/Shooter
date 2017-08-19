@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using System.IO;
 
 public class ChangeLevel : MonoBehaviour {
-	public const int NumberOfLevels = 2;
+	public const int NumberOfLevels = 5;
 
 	public static int CurrentLevelIndex = 1;
 
