@@ -7,7 +7,15 @@ public class PickUpGun : MonoBehaviour {
 	public Transform spawn;
 	public GameObject handedGun;
 
+	public AudioClip audioClip;
+
 	bool hasGun;
+
+	AudioSource audioSource;
+
+	void Start() {
+		audioSource = GetComponent<AudioSource> ();
+	}
 
 	void OnControllerColliderHit(ControllerColliderHit hit) {
 		if (hit.collider.tag == "LyingGun" && !hasGun) {
@@ -19,6 +27,8 @@ public class PickUpGun : MonoBehaviour {
 			handedGun.transform.rotation = spawn.rotation;
 
 			handedGun.transform.SetParent (transform.Find ("Head"));
+
+			audioSource.PlayOneShot (audioClip);
 		}
 	}
 }

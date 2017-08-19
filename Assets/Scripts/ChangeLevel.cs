@@ -5,14 +5,22 @@ using UnityEngine.SceneManagement;
 using System.IO;
 
 public class ChangeLevel : MonoBehaviour {
-
-	const string levelsDirectory = "Scenes/Levels/";
 	public const int NumberOfLevels = 2;
 
 	public static int CurrentLevelIndex = 1;
 
+	public AudioClip audioClip;
+
+	AudioSource audioSource;
+
+	const string levelsDirectory = "Scenes/Levels/";
+
+	void Start() {
+		audioSource = GetComponent<AudioSource> ();
+		audioSource.PlayOneShot (audioClip);
+	}
+
 	void OnTriggerEnter(Collider col) {
-		
 		int numberOfEnemies = GameObject.FindGameObjectsWithTag ("Enemy").Length;
 
 		if (col.gameObject.tag == "Player" && numberOfEnemies == 0) {

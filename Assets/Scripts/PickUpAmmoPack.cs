@@ -9,11 +9,21 @@ public class PickUpAmmoPack : MonoBehaviour {
 
 	public GameObject gun;
 
+	public AudioClip audioClip;
+
+	AudioSource audioSource;
+
+	void Awake() {
+		audioSource = GetComponent<AudioSource> ();
+	}
+
 	void OnControllerColliderHit(ControllerColliderHit hit) {
 		if (hit.collider.tag == "AmmoPack") {
 			Destroy (hit.collider.gameObject);
 
 			gun.GetComponent<GunController> ().ammoCounter.Add (Random.Range (minAmmo, maxAmmo));
+
+			audioSource.PlayOneShot (audioClip);
 		}
 	}
 }

@@ -7,12 +7,17 @@ public class Shootable : MonoBehaviour {
 	public Transform bulletSpawn;
 	public GameObject bulletPrefab;
 
+	public AudioClip audioClip;
+
 	const float bulletForwardForce = 2500;
 	const float bulletExistenceTime = 4.0f;
+
+	AudioSource audioSource;
 
 	GameObject instantiatedObjects;
 
 	protected void Awake() {
+		audioSource = GetComponent<AudioSource> ();
 		instantiatedObjects = GameObject.Find ("InstantiatedObjects");
 	}
 
@@ -24,5 +29,7 @@ public class Shootable : MonoBehaviour {
 		bullet.GetComponent<Rigidbody> ().AddForce (bulletSpawn.forward * bulletForwardForce);
 
 		Destroy (bullet, bulletExistenceTime);
+
+		audioSource.PlayOneShot (audioClip);
 	}
 }
